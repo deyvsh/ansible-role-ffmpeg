@@ -28,18 +28,18 @@
 
 - name: Download ffmpeg
   unarchive:
-    src: '{{ ffmpeg_homepage }}/releases/ffmpeg-{{ ffmpeg_actual_version }}-64bit-static.tar.xz'
+    src: '{{ ffmpeg_homepage }}/releases/ffmpeg-{{ ffmpeg_actual_version }}-amd64-static.tar.xz'
     #remote_src: yes # requires Ansible 2.2
     copy: no # Remove for Ansible 2.2
     dest: '{{ ffmpeg_install }}'
-    creates: '{{ ffmpeg_install }}/ffmpeg-{{ ffmpeg_actual_version}}-64bit-static'
+    creates: '{{ ffmpeg_install }}/ffmpeg-{{ ffmpeg_actual_version}}-amd64-static'
   environment:
     '{{ ffmpeg_webproxy | default ({}) }}'
 
 - name: Set Default Symlink
   file:
     path: '{{ ffmpeg_install }}/ffmpeg'
-    src: ffmpeg-{{ ffmpeg_actual_version }}-64bit-static
+    src: ffmpeg-{{ ffmpeg_actual_version }}-amd64-static
     state: link
   ignore_errors: '{{ ansible_check_mode }}'
 

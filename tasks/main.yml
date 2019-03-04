@@ -24,7 +24,7 @@
 # Uglier screen scraping hack, with --check hack grafted in
 - name: Set Current Version
   set_fact:
-    ffmpeg_actual_version: '{{ (ffmpeg_version == "release") | ternary( ffmpeg_get_version.stdout|default("unknown")|regex_replace(".*: ",""), ffmpeg_version ) }}'
+    ffmpeg_actual_version: '{{ (ffmpeg_version == "release") | ternary( ffmpeg_get_version.stdout|default("unknown")|regex_replace("((.*: )|(<.*>))",""), ffmpeg_version ) }}'
 
 - name: Download ffmpeg
   unarchive:

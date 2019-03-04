@@ -15,11 +15,13 @@
   get_url:
     url: '{{ ffmpeg_homepage }}'
     dest: '{{ ffmpeg_temp_directory }}'
+  when: (ffmpeg_version == "release")
 
 # Ugly screen scraping hack
 - name: Get Current Version Number
   command: 'grep release: {{ ffmpeg_temp_directory }}/index.html'
   register: ffmpeg_get_version
+  when: (ffmpeg_version == "release")
 
 # Uglier screen scraping hack, with --check hack grafted in
 - name: Set Current Version

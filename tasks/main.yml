@@ -28,7 +28,7 @@
 
 - name: Download ffmpeg
   unarchive:
-    src: '{{ ffmpeg_homepage }}/releases/ffmpeg-{{ ffmpeg_actual_version }}-amd64-static.tar.xz'
+    src: '{{ ffmpeg_homepage }}/releases/ffmpeg-{{ (ffmpeg_version == "release") | ternary( "release", ffmpeg_actual_version ) }}-amd64-static.tar.xz'
     #remote_src: yes # requires Ansible 2.2
     copy: no # Remove for Ansible 2.2
     dest: '{{ ffmpeg_install }}'

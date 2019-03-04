@@ -48,7 +48,7 @@
     path: '{{ ffmpeg_compatibility }}'
     state: directory
 
-- name: Set Compatibility Symlink
+- name: Set Compatibility Symlinks
   file:
     path: '{{ ffmpeg_compatibility }}/{{ item }}'
     src: '{{ ffmpeg_install }}/ffmpeg/{{ item }}'
@@ -56,3 +56,4 @@
   ignore_errors: '{{ ansible_check_mode }}'
   with_items:
     - ffmpeg
+    - ffprobe
